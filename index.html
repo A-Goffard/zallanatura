@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zalla Natura</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="icon" href="images/custom-icon.png" type="image/png">
 </head>
 <body>
     <header>
@@ -57,6 +60,61 @@
         </div>
         <img src="images/resultados-obtenidos.jpg" alt="Imagen de resultados obtenidos">
     </section>
+
+    <section class="secciones">
+        <h2>Mapa Interactivo</h2>
+        <div id="map" style="height: 500px; border-radius: 8px;"></div>
+    </section>
+    <script>
+        // Inicializar el mapa
+        var map = L.map('map').setView([43.2171, -3.0659], 13); // Coordenadas aproximadas de Zalla
+
+        // Añadir capa base de OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Crear iconos personalizados
+        var greenIcon = L.icon({
+            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        var redIcon = L.icon({
+            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        var blueIcon = L.icon({
+            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x-blue.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // Añadir marcadores con iconos personalizados
+        var actividades = [
+            { coords: [43.2171, -3.0659], texto: 'Plantación de árboles en Landabaso eskola', icon: greenIcon },
+            { coords: [43.2150, -3.0700], texto: 'Creación de un oasis de mariposas en el parque de Lusa', icon: redIcon },
+            { coords: [43.2200, -3.0600], texto: 'Ruta para conocer los árboles de Zalla', icon: blueIcon }
+        ];
+
+        actividades.forEach(function(actividad) {
+            L.marker(actividad.coords, { icon: actividad.icon }).addTo(map)
+                .bindTooltip(actividad.texto, { permanent: false, direction: 'top' });
+        });
+    </script>
 
     <footer>
         <p>&copy; 2025 Geobizi. Todos los derechos reservados.</p>
