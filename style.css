@@ -43,6 +43,11 @@ footer {
     margin-top: 2rem;
 }
 
+.iconito {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 5px;
+}
 /* Sección de presentación */
 .presentation {
     display: flex;
@@ -67,7 +72,8 @@ footer {
 }
 
 /* Imágenes en secciones */
-.secciones {
+.secciones
+.mapa {
     display: flex;
     align-items: center;
     justify-content: space-between;

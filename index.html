@@ -61,46 +61,13 @@
         <img src="images/resultados-obtenidos.jpg" alt="Imagen de resultados obtenidos">
     </section>
 
-    <section class="secciones">
+    <section class="mapa">
         <h2>Mapa Interactivo</h2>
         <div id="map" style="height: 500px; border-radius: 8px;"></div>
     </section>
-    <script>
-        // Inicializar el mapa
-        var map = L.map('map').setView([43.2171, -3.0659], 13); // Coordenadas aproximadas de Zalla
-
-        // Añadir capa base de OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
-
-        // Crear icono personalizado con la imagen custom-icon.png
-        var customIcon = L.icon({
-            iconUrl: 'images/icons/localizador.png', // Ruta a tu imagen
-            iconSize: [30, 40], // Tamaño del icono (ajústalo según tu imagen)
-            iconAnchor: [15, 40], // Punto de anclaje del icono
-            popupAnchor: [0, -40], // Punto de anclaje del popup
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png', // Sombra opcional
-            shadowSize: [41, 41], // Tamaño de la sombra
-            shadowAnchor: [12, 41] // Punto de anclaje de la sombra
-        });
-
-        // Añadir marcadores con el icono personalizado
-        var actividades = [
-            { coords: [43.2171, -3.0659], texto: 'Plantación de árboles en Landabaso eskola', icon: customIcon },
-            { coords: [43.2150, -3.0700], texto: 'Creación de un oasis de mariposas en el parque de Lusa', icon: customIcon },
-            { coords: [43.2200, -3.0600], texto: 'Ruta para conocer los árboles de Zalla', icon: customIcon }
-        ];
-
-        actividades.forEach(function(actividad) {
-            L.marker(actividad.coords, { icon: actividad.icon }).addTo(map)
-                .bindTooltip(actividad.texto, { permanent: false, direction: 'top' });
-        });
-    </script>
-
-    <footer>
-        <p>&copy; 2025 Geobizi. Todos los derechos reservados.</p>
-    </footer>
+<script src="map.js"></script>
+<footer>
+    <p>&copy; 2025 Geobizi <img class="iconito" src="images/hojitas.png" alt="Hojas logo"> . Todos los derechos reservados.</p>
+</footer>
 </body>
 </html>
